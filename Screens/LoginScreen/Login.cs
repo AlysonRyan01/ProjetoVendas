@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using ProjetoVendas.Data;
 using ProjetoVendas.Models;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace ProjetoVendas.Screens.LoginScreen
 {
@@ -44,7 +45,14 @@ namespace ProjetoVendas.Screens.LoginScreen
                 System.Console.WriteLine();
                 if(email.Length > 200)
                 {
-                    Console.WriteLine("Erro. Digite um email correto");
+                    Console.WriteLine("Erro. Digite um email corretamente.");
+                    System.Console.WriteLine("1 - voltar ao menu");
+                    System.Console.WriteLine("2 - Tentar novamente");
+                    int opcao = int.Parse(Console.ReadLine());
+
+                    if(opcao == 1) 
+                        return LoginOuRegistrar(context);
+
                     continue;
                 }
 
@@ -65,7 +73,17 @@ namespace ProjetoVendas.Screens.LoginScreen
                 string senha = Console.ReadLine();
                 System.Console.WriteLine();
                 if(cliente.Senha != senha)
-                    throw new ExcecaoPersonalizada("Erro. Senha incorreta");
+                {
+                    System.Console.WriteLine("Erro. Senha incorreta.");
+                    System.Console.WriteLine("1 - voltar ao menu");
+                    System.Console.WriteLine("2 - Tentar novamente");
+                    int opcao = int.Parse(Console.ReadLine());
+
+                    if(opcao == 1) 
+                        return LoginOuRegistrar(context);
+
+                    continue;
+                } 
                 
                 autorizado = true;
             }
@@ -88,15 +106,30 @@ namespace ProjetoVendas.Screens.LoginScreen
                 if(nome.Length > 120 || nome.Length < 3)
                 {
                     System.Console.WriteLine("Erro. Digite um nome menor que 120 caracteres");
+                    System.Console.WriteLine("1 - voltar ao menu");
+                    System.Console.WriteLine("2 - Tentar novamente");
+                    int opcao = int.Parse(Console.ReadLine());
+
+                    if(opcao == 1) 
+                        return LoginOuRegistrar(context);
+
                     continue;
                 }
 
                 System.Console.Write("Digite seu CPF:");
                 string cpf = Console.ReadLine();
+                cpf = Regex.Replace(cpf, @"\D", "");
                 System.Console.WriteLine();
                 if(cpf.Length != 11)
                 {
                     System.Console.WriteLine("Erro.Digite um cpf valido.");
+                    System.Console.WriteLine("1 - voltar ao menu");
+                    System.Console.WriteLine("2 - Tentar novamente");
+                    int opcao = int.Parse(Console.ReadLine());
+
+                    if(opcao == 1) 
+                        return LoginOuRegistrar(context);
+
                     continue;
                 }
 
@@ -106,15 +139,30 @@ namespace ProjetoVendas.Screens.LoginScreen
                 if(endereco.Length > 280 || endereco.Length < 6)
                 {
                     System.Console.WriteLine("Erro. Digite uma senha menor que 20 caracteres.");
+                    System.Console.WriteLine("1 - voltar ao menu");
+                    System.Console.WriteLine("2 - Tentar novamente");
+                    int opcao = int.Parse(Console.ReadLine());
+
+                    if(opcao == 1) 
+                        return LoginOuRegistrar(context);
+
                     continue;
                 }
 
                 System.Console.Write("Digite seu telefone: ");
                 string fone = Console.ReadLine();
+                fone = Regex.Replace(fone, @"\D", "");
                 System.Console.WriteLine();
                 if(fone.Length > 12 || fone.Length < 5)
                 {
                     System.Console.WriteLine("Erro. Digite um telefone correto.");
+                    System.Console.WriteLine("1 - voltar ao menu");
+                    System.Console.WriteLine("2 - Tentar novamente");
+                    int opcao = int.Parse(Console.ReadLine());
+
+                    if(opcao == 1) 
+                        return LoginOuRegistrar(context);
+
                     continue;
                 }
 
@@ -124,6 +172,13 @@ namespace ProjetoVendas.Screens.LoginScreen
                 if(email.Length > 200 || email.Length < 5)
                 {
                     System.Console.WriteLine("Erro. Digite um email valido");
+                    System.Console.WriteLine("1 - voltar ao menu");
+                    System.Console.WriteLine("2 - Tentar novamente");
+                    int opcao = int.Parse(Console.ReadLine());
+
+                    if(opcao == 1) 
+                        return LoginOuRegistrar(context);
+
                     continue;
                 }
 
@@ -133,6 +188,13 @@ namespace ProjetoVendas.Screens.LoginScreen
                 if(senha.Length > 20 || senha.Length < 3)
                 {
                     System.Console.WriteLine("Erro. Digite uma senha menor que 20 caracteres.");
+                    System.Console.WriteLine("1 - voltar ao menu");
+                    System.Console.WriteLine("2 - Tentar novamente");
+                    int opcao = int.Parse(Console.ReadLine());
+
+                    if(opcao == 1) 
+                        return LoginOuRegistrar(context);
+
                     continue;
                 }
 
