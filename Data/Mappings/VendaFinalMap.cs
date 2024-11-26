@@ -8,7 +8,19 @@ namespace ProjetoVendas.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<VendaFinal> builder)
         {
+            builder.ToTable("VendaFinal");
+
+            builder.HasKey(x => x.Id);
+
+            builder.Property(x => x.Id)
+                .ValueGeneratedOnAdd()
+                .UseIdentityColumn();
             
+            builder.Property(x=> x.ValorTotal)
+                .IsRequired()
+                .HasColumnName("ValorTotal")
+                .HasColumnType("DECIMAL(18,2)");
+
         }
     }
 }
