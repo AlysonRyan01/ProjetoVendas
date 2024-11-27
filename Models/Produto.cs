@@ -15,5 +15,10 @@ namespace ProjetoVendas.Models
         public Carrinho? Carrinho { get; set; }
 
         public IList<ProdutoImagens> ProdutoImagens { get; set; }
+
+        public Produto()
+        {
+            ProdutoImagens = new List<ProdutoImagens>();
+        }
     }
 }

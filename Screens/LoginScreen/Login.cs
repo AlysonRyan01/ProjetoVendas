@@ -6,12 +6,15 @@ using ProjetoVendas.Data;
 using ProjetoVendas.Models;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using ProjetoVendas.Clientee;
 
 namespace ProjetoVendas.Screens.LoginScreen
 {
-    public static class Login
+    public class Login
     {
-        public static Cliente LoginOuRegistrar(VendasDataContext context)
+        VendasDataContext context = new VendasDataContext();
+
+        public void LoginOuRegistrar()
         {   
             Console.Clear();
             System.Console.WriteLine("BEM VINDO A NOSSA LOJA!");
@@ -24,19 +27,22 @@ namespace ProjetoVendas.Screens.LoginScreen
             switch(opcao)
             {
                 case 1:
-                    return FazerLogin(context);
+                    FazerLogin();
+                    break;
                 case 2:
-                    return FazerRegistro(context);
+                    FazerRegistro();
+                    break;
                 default:
-                    return null;
+                    System.Console.WriteLine("Erro. Digite um numero entre 1 e 2");
+                    break;
             }
             
         }
 
-        private static Cliente FazerLogin(VendasDataContext context)
+        private void FazerLogin()
         {
             Console.Clear();
-            Cliente cliente = null;
+            var cliente = new Cliente();
             var autorizado = false;
             while(!autorizado)
             {
@@ -51,7 +57,7 @@ namespace ProjetoVendas.Screens.LoginScreen
                     int opcao = int.Parse(Console.ReadLine());
 
                     if(opcao == 1) 
-                        return LoginOuRegistrar(context);
+                        LoginOuRegistrar();
 
                     continue;
                 }
@@ -64,7 +70,7 @@ namespace ProjetoVendas.Screens.LoginScreen
                     int opcao = int.Parse(Console.ReadLine());
 
                     if(opcao == 1) 
-                        return LoginOuRegistrar(context);
+                        LoginOuRegistrar();
 
                     continue;
                 }
@@ -80,7 +86,7 @@ namespace ProjetoVendas.Screens.LoginScreen
                     int opcao = int.Parse(Console.ReadLine());
 
                     if(opcao == 1) 
-                        return LoginOuRegistrar(context);
+                        LoginOuRegistrar();
 
                     continue;
                 } 
@@ -90,10 +96,10 @@ namespace ProjetoVendas.Screens.LoginScreen
             
             System.Console.WriteLine("Cliente localizado com sucesso!");
             Console.Clear();
-            return cliente;
+            ClienteAtual.Cliente = cliente;
         }
 
-        private static Cliente FazerRegistro(VendasDataContext context)
+        private void FazerRegistro()
         {
             Console.Clear();
             Cliente cliente = null;
@@ -111,7 +117,7 @@ namespace ProjetoVendas.Screens.LoginScreen
                     int opcao = int.Parse(Console.ReadLine());
 
                     if(opcao == 1) 
-                        return LoginOuRegistrar(context);
+                        LoginOuRegistrar();
 
                     continue;
                 }
@@ -128,7 +134,7 @@ namespace ProjetoVendas.Screens.LoginScreen
                     int opcao = int.Parse(Console.ReadLine());
 
                     if(opcao == 1) 
-                        return LoginOuRegistrar(context);
+                        LoginOuRegistrar();
 
                     continue;
                 }
@@ -144,7 +150,7 @@ namespace ProjetoVendas.Screens.LoginScreen
                     int opcao = int.Parse(Console.ReadLine());
 
                     if(opcao == 1) 
-                        return LoginOuRegistrar(context);
+                        LoginOuRegistrar();
 
                     continue;
                 }
@@ -161,7 +167,7 @@ namespace ProjetoVendas.Screens.LoginScreen
                     int opcao = int.Parse(Console.ReadLine());
 
                     if(opcao == 1) 
-                        return LoginOuRegistrar(context);
+                        LoginOuRegistrar();
 
                     continue;
                 }
@@ -177,7 +183,7 @@ namespace ProjetoVendas.Screens.LoginScreen
                     int opcao = int.Parse(Console.ReadLine());
 
                     if(opcao == 1) 
-                        return LoginOuRegistrar(context);
+                        LoginOuRegistrar();
 
                     continue;
                 }
@@ -193,7 +199,7 @@ namespace ProjetoVendas.Screens.LoginScreen
                     int opcao = int.Parse(Console.ReadLine());
 
                     if(opcao == 1) 
-                        return LoginOuRegistrar(context);
+                        LoginOuRegistrar();
 
                     continue;
                 }
@@ -214,7 +220,7 @@ namespace ProjetoVendas.Screens.LoginScreen
                 context.SaveChanges();
             }
             Console.Clear();
-            return cliente;
+            FazerLogin();
         }
     }
 }
